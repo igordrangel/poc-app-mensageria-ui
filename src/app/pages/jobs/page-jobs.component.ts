@@ -2,7 +2,7 @@ import { JobService } from './../../shared/services/job/job.service';
 import { Job, JobStatus, JobStatusOptions } from './../../shared/services/job/job.interface';
 import { Component } from '@angular/core';
 import { CatCRUDComponentBase } from '@catrx/ui/common';
-import { CatDatatableService, DatatableConfig } from '@catrx/ui/datatable';
+import { CatDatatableService } from '@catrx/ui/datatable';
 import { CatConfirmService } from '@catrx/ui/confirm';
 import { CatDialogService } from '@catrx/ui/dialog';
 import { CatFormListOptions, CatFormService } from '@catrx/ui/form';
@@ -122,7 +122,7 @@ export class PageJobsComponent extends CatCRUDComponentBase {
     );
   }
 
-  openDialog(data?: any) {
+  openDialog(data?: Job) {
     this.openFormDialog(
       this.formService
         .build<Job>(data)
