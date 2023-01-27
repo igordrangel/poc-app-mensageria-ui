@@ -68,10 +68,12 @@ export class PageJobsComponent extends CatCRUDComponentBase {
     .setItemLine({
       columnIndex: 0,
       text: (item) => `#${item.id}`,
+      customWidthColumn: '150px'
     })
     .setItemLine({
       columnIndex: 1,
       component: (item) => this.convertStatusToChip(item.status),
+      customWidthColumn: '150px'
     })
     .setItemLine({
       columnIndex: 2,

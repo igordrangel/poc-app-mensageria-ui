@@ -9,46 +9,24 @@
 
         <span class="divider"></span>
 
-        <cat-dropdown
-          *ngIf="(currentStatus$ | async) as currentStatus"
-          position="bottom">
+        <cat-dropdown *ngIf="(currentStatus$ | async) as currentStatus" position="bottom"
+          [disabled]="currentStatus.status === 'done'" [insideClick]="false">
 
-          <button
-            trigger
-            class="status"
-            [ngClass]="currentStatus.status"
-            [disabled]="currentStatus.status === 'done'">
+          <button trigger class="status" [ngClass]="currentStatus.status" [disabled]="currentStatus.status === 'done'">
             <i [ngClass]="currentStatus.icon"></i>
             {{currentStatus.text}}
             <span class="space"></span>
             <i *ngIf="currentStatus.status !== 'done'" class="fa-solid fa-caret-down"></i>
           </button>
           <div content>
-            <a *ngIf="currentStatus.status !== 'canceled' && currentStatus.status !== 'done'" class="dropdown-item" href="#">
+            <button *ngIf="currentStatus.status !== 'canceled' && currentStatus.status !== 'done'" class="dropdown-item"
+              (click)="cancel()">
               <i class="fa-solid fa-ban mr-5"></i> Cancelar
-            </a>
-            <a *ngIf="currentStatus.status !== 'onQueue' && currentStatus.status !== 'done'" class="dropdown-item" href="#">
+            </button>
+            <button *ngIf="currentStatus.status === 'canceled' || currentStatus.status === 'error'"
+              class="dropdown-item" (click)="backToQueue()">
               <i class="fa-solid fa-rotate-right mr-5"></i> Retomar para fila
-            </a>
-          </div>
-        </cat-dropdown>
-
-        <span class="divider"></span>
-
-        <cat-dropdown position="bottom">
-          <button trigger>
-            <i class="fa-solid fa-database"></i>
-            Payload
-            <span class="space"></span>
-            <i class="fa-solid fa-caret-down"></i>
-          </button>
-          <div content>
-            <a class="dropdown-item" href="#">
-              <i class="fa-solid fa-database mr-5"></i> Payload de RPA
-            </a>
-            <a class="dropdown-item" href="#">
-              <i class="fa-solid fa-database mr-5"></i> Payload de Integração
-            </a>
+            </button>
           </div>
         </cat-dropdown>
       </div>

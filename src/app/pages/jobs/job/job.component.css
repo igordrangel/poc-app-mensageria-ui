@@ -38,6 +38,9 @@
   color: #f1f1f1;
   background-color: rgba(0,0,0,.2);
 }
+.job-content .job-info-content button:disabled {
+  cursor: not-allowed;
+}
 .job-content .job-info-content button.status.onQueue i {
   color: var(--chip-bg-warning);
 }

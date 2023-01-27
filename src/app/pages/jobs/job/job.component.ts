@@ -1,3 +1,5 @@
+import { CatSnackbarService } from '@catrx/ui/snackbar';
+import { CatLoaderPageService } from '@catrx/ui/loader-page';
 import { JobService } from './../../../shared/services/job/job.service';
 import { Job, JobStatus } from './../../../shared/services/job/job.interface';
 import { Component, OnInit } from '@angular/core';
@@ -21,7 +23,9 @@ export class JobComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private jobService: JobService
+    private jobService: JobService,
+    private loaderPageService: CatLoaderPageService,
+    private snackbarService: CatSnackbarService
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +38,35 @@ export class JobComponent implements OnInit {
           if (job.status === 'onQueue') this.simulate();
         })
     })
+  }
+
+  cancel() {
+    this.loaderPageService.show();
+    this.updateStatusJob('canceled')
+      .then(() => {
+        this.snackbarService.open({
+          type: 'success',
+          title: 'Job cancelado com sucesso!',
+          openedTime: 10000
+        })
+        this.loaderPageService.dismiss()
+      })
+      .catch(() => this.loaderPageService.dismiss());
+  }
+
+  backToQueue() {
+    this.loaderPageService.show();
+    this.updateStatusJob('onQueue')
+      .then(() => {
+        this.snackbarService.open({
+          type: 'success',
+          title: 'Job retomado com sucesso!',
+          openedTime: 10000
+        })
+        this.loaderPageService.dismiss()
+        this.simulate()
+      })
+      .catch(() => this.loaderPageService.dismiss());
   }
 
   private getStatusInfo(status: JobStatus): JobStatusButton {
@@ -91,8 +124,12 @@ export class JobComponent implements OnInit {
   private updateStatusJob(status: JobStatus) {
     return new Promise(resolve => {
       const job = this.job$.getValue();
-      if (job) {
+      if (job && (job.status !== 'canceled' || status === 'onQueue')) {
         job.status = status;
+        if (status === 'onQueue') {
+          job.telemetryRPA = [];
+          job.telemetryIntegration = [];
+        }
         this.jobService.save(job, job.id).subscribe(async () => {
           this.currentStatus$.next(this.getStatusInfo(job.status));
           await this.simulateTelemetry(status);

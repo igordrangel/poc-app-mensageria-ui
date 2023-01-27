@@ -17,8 +17,8 @@ export interface Job {
 export type JobStatus = 'onQueue' | 'executingRPA' | 'executingIntegration' | 'error' | 'canceled' | 'done'
 export const JobStatusOptions: CatFormListOptions[] = [
   { value: 'onQueue', name: 'Na Fila' },
-  { value: 'executingRPA', name: 'Executando' },
-  { value: 'executingIntegration', name: 'Executando' },
+  { value: 'executingRPA', name: 'Processando RPA' },
+  { value: 'executingIntegration', name: 'Processando Integração' },
   { value: 'error', name: 'Error' },
   { value: 'canceled', name: 'Cancelado' },
   { value: 'done', name: 'Concluído' }
