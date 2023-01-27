@@ -23,6 +23,14 @@ import { Router } from '@angular/router';
       <cat-form filter [config]="filterForm"></cat-form>
 
       <cat-datatable content [config]="this.listConfig">
+        <nav list-checked-actions>
+          <cat-icon-button
+            (click)="deleteSelected()"
+            icon="fa-solid fa-trash-can"
+            tooltip="Excluir Selecionados">
+          </cat-icon-button>
+        </nav>
+
         <nav list-actions>
           <cat-icon-button
             (click)="export('Jobs')"
@@ -85,6 +93,7 @@ export class PageJobsComponent extends CatCRUDComponentBase {
       columnIndex: 2,
       text: (item) => item.type,
     })
+    .hasSelection()
     .hasActions()
     .getSelection((selection) => (this.selection = selection))
     .getDatasource((datasource) => (this.datasource = datasource))
