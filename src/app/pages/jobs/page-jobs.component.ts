@@ -1,5 +1,5 @@
 import { JobService } from './../../shared/services/job/job.service';
-import { JobStatus, JobStatusOptions } from './../../shared/services/job/job.interface';
+import { Job, JobStatus, JobStatusOptions } from './../../shared/services/job/job.interface';
 import { Component } from '@angular/core';
 import { CatCRUDComponentBase } from '@catrx/ui/common';
 import { CatDatatableService, DatatableConfig } from '@catrx/ui/datatable';
@@ -16,6 +16,10 @@ import { Router } from '@angular/router';
 @Component({
   template: `
     <app-page>
+      <nav menu>
+        <cat-primary-button (click)='openDialog()'>Novo Job</cat-primary-button>
+      </nav>
+
       <cat-form filter [config]="filterForm"></cat-form>
 
       <cat-datatable content [config]="this.listConfig">
@@ -38,7 +42,7 @@ import { Router } from '@angular/router';
 })
 export class PageJobsComponent extends CatCRUDComponentBase {
   filterForm = this.formService
-    .build({status: ''})
+    .build({ status: '' })
     .number('ID', 'id', (builder) => builder.grid(3).generate())
     .search('Tipo', 'type', (builder) => builder.grid(3).generate())
     .select('Status', 'status', (builder) =>
@@ -106,6 +110,27 @@ export class PageJobsComponent extends CatCRUDComponentBase {
       dialogService,
       confirmService,
       { xlsx: xlsxService }
+    );
+  }
+
+  openDialog(data?: any) {
+    this.openFormDialog(
+      this.formService
+        .build<Job>(data)
+        .text('Tipo', 'type', (builder) =>
+          builder.focus().setRequired().generate()
+        )
+        .onSubmit((job) => this.service
+          .save({
+            ...job,
+            status: 'onQueue',
+            telemetryRPA: [],
+            telemetryIntegration: []
+          }, data?.id)
+        )
+        .generate(),
+      !!data,
+      { title: 'Gato' }
     );
   }
 
