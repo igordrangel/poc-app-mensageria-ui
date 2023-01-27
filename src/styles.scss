@@ -1,9 +1,10 @@
 :root,
 main.dark {
+  --shadow-color: rgba(142, 36, 170, 0.4);
   --bg-body: #20082f;
   --font-color: #f1f1f1;
   --primary-color: #CE93D8;
-  --primary-color-alpha: rgba(142, 36, 170, 0.2);
+  --primary-color-alpha: var(--shadow-color);
 
   --btn-icon-bg-default: transparent;
 
@@ -17,9 +18,7 @@ main.dark {
 
   --bg-datatable-th: #20082f;
 
-  --shadow-color: rgba(142, 36, 170, 0.2);
-
-  --border-color-datatable-th: rgba(142, 36, 170, 0.2);
+  --border-color-datatable-th: var(--shadow-color);
 }
 
 cat-datatable table thead {
