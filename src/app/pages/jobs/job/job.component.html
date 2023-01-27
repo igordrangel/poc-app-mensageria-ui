@@ -1,0 +1,85 @@
+<app-page>
+  <div content class="job-content">
+    <ng-container *ngIf="(job$ | async) as job else loader">
+      <div class="job-info-content">
+        <div class="title">
+          <i class="fa-solid fa-diagram-project"></i>
+          <h2>{{job.type}}</h2>
+        </div>
+
+        <span class="divider"></span>
+
+        <cat-dropdown
+          *ngIf="(currentStatus$ | async) as currentStatus"
+          position="bottom">
+
+          <button
+            trigger
+            class="status"
+            [ngClass]="currentStatus.status"
+            [disabled]="currentStatus.status === 'done'">
+            <i [ngClass]="currentStatus.icon"></i>
+            {{currentStatus.text}}
+            <span class="space"></span>
+            <i *ngIf="currentStatus.status !== 'done'" class="fa-solid fa-caret-down"></i>
+          </button>
+          <div content>
+            <a *ngIf="currentStatus.status !== 'canceled' && currentStatus.status !== 'done'" class="dropdown-item" href="#">
+              <i class="fa-solid fa-ban mr-5"></i> Cancelar
+            </a>
+            <a *ngIf="currentStatus.status !== 'onQueue' && currentStatus.status !== 'done'" class="dropdown-item" href="#">
+              <i class="fa-solid fa-rotate-right mr-5"></i> Retomar para fila
+            </a>
+          </div>
+        </cat-dropdown>
+
+        <span class="divider"></span>
+
+        <cat-dropdown position="bottom">
+          <button trigger>
+            <i class="fa-solid fa-database"></i>
+            Payload
+            <span class="space"></span>
+            <i class="fa-solid fa-caret-down"></i>
+          </button>
+          <div content>
+            <a class="dropdown-item" href="#">
+              <i class="fa-solid fa-database mr-5"></i> Payload de RPA
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fa-solid fa-database mr-5"></i> Payload de Integração
+            </a>
+          </div>
+        </cat-dropdown>
+      </div>
+      <div class="job-telemetry">
+        <h3>Telemetria</h3>
+        <cat-expansive-panel-group>
+          <cat-expansive-panel [expanded]="job.telemetryRPA.length > 0">
+            <div title>Processo de RPA</div>
+
+            <p *ngFor="let message of job.telemetryRPA">
+              <strong>[{{message.dateExecuted | date:'medium'}}]:</strong>
+              {{message.message}}
+            </p>
+          </cat-expansive-panel>
+
+          <cat-expansive-panel [expanded]="job.telemetryIntegration.length > 0">
+            <div title>Processo de Integração</div>
+
+            <p *ngFor="let message of job.telemetryIntegration">
+              <strong>[{{message.dateExecuted | date:'medium'}}]:</strong>
+              {{message.message}}
+            </p>
+          </cat-expansive-panel>
+        </cat-expansive-panel-group>
+      </div>
+    </ng-container>
+
+    <ng-template #loader>
+      <div class="loader-container">
+        <cat-loader></cat-loader>
+      </div>
+    </ng-template>
+  </div>
+</app-page>
