@@ -135,6 +135,8 @@ export class JobComponent implements OnInit {
           await this.simulateTelemetry(status);
           resolve(true);
         });
+      } else {
+        resolve(true);
       }
     })
   }

@@ -63,7 +63,9 @@ export class PageJobsComponent extends CatCRUDComponentBase {
     .setActionButton({
       iconName: 'fa-regular fa-eye',
       tooltip: 'Visualizar Job',
-      fnAction: (item) => this.router.navigateByUrl(`${location.hash.replace('#', '')}/${item.id}`),
+      fnAction: (item) => this.router.navigateByUrl(
+        `${location.hash.replace('#', '')}/${item.id}`
+      ),
     })
     .setItemLine({
       columnIndex: 0,
