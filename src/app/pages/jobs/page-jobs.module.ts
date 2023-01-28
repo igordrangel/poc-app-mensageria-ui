@@ -13,6 +13,7 @@ import { CatExpansivePanelModule } from '@catrx/ui/expansive-panel';
 import { JobComponent } from './job/job.component';
 import { CatLoaderModule } from '@catrx/ui/loader';
 import { CatDropdownModule } from '@catrx/ui/dropdown';
+import { CatAlertModule } from '@catrx/ui/alert';
 
 @NgModule({
   declarations: [PageJobsComponent, JobComponent],
@@ -28,6 +29,7 @@ import { CatDropdownModule } from '@catrx/ui/dropdown';
     CatExpansivePanelModule,
     CatLoaderModule,
     CatDropdownModule,
+    CatAlertModule,
     PageJobsRoutingModule
   ]
 })
