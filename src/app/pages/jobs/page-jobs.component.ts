@@ -151,7 +151,7 @@ export class PageJobsComponent extends CatCRUDComponentBase<JobFilter, Job> {
         )
         .generate(),
       !!data,
-      { title: 'Gato' }
+      { title: 'Job' }
     );
   }
 
