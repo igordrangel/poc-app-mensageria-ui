@@ -3,7 +3,7 @@ import { AppPageComponent } from './../../shared/components/app-page/app-page.co
 import { NgModule } from '@angular/core';
 import { PageJobsComponent } from './page-jobs.component';
 import { PageJobsRoutingModule } from './page-jobs.routing.module';
-import { CatPrimaryButtonComponent } from '@catrx/ui/button';
+import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
 import { CatConfirmModule } from '@catrx/ui/confirm';
 import { CatDatatableModule } from '@catrx/ui/datatable';
 import { CatDialogModule } from '@catrx/ui/dialog';

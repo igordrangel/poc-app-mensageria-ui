@@ -1,9 +1,10 @@
+import { klArray } from '@koalarx/utils/operators/array';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CatServiceBase } from '@catrx/ui/common';
 import { CatDatatableDataHttpResponse } from '@catrx/ui/datatable';
-import { koala } from '@koalarx/utils';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/internal/operators/map';
 import { Job, JobFilter } from './job.interface';
 
 @Injectable({providedIn: 'root'})
@@ -25,8 +26,7 @@ export class JobService extends CatServiceBase<JobFilter, Job[], Job> {
 
   getDatatable(filter: JobFilter): Observable<CatDatatableDataHttpResponse<Job>> {
     return this.getAll(filter).pipe(map(jobsBase => {
-      const jobs = koala(jobsBase)
-        .array<Job>()
+      const jobs = klArray(jobsBase)
         .filter(filter?.id ?? '', 'id')
         .filter(filter?.type ?? '', 'type')
         .filter(filter?.status ?? '', 'status')

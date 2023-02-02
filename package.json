@@ -5,6 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:stats": "ng build --stats-json",
+    "analyze": "webpack-bundle-analyzer dist/stats.json",
+    "analyze-bundle": "npm run build:stats && npm run analyze",
     "prod": "ng build --configuration production --build-optimizer",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -20,8 +23,8 @@
     "@angular/platform-browser": "^15.0.0",
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
-    "@catrx/ui": "^1.0.32",
-    "@koalarx/utils": "^1.1.0",
+    "@catrx/ui": "^1.2.1",
+    "@koalarx/utils": "^2.0.8",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
@@ -45,6 +48,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~4.8.2"
+    "typescript": "~4.8.2",
+    "webpack-bundle-analyzer": "^4.4.2"
   }
 }

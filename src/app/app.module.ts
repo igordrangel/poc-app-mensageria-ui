@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CatUiModule } from '@catrx/ui/core';
+import { CatUiModule } from '@catrx/ui';
 import { environment } from '../environments/environment';
 import { AppService } from './app.service';
 

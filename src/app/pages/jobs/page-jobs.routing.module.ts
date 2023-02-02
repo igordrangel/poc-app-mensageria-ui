@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CatAuthGuard } from '@catrx/ui/core';
+import { CatAuthGuard } from '@catrx/ui';
 import { JobComponent } from './job/job.component';
 import { PageJobsComponent } from './page-jobs.component';
 

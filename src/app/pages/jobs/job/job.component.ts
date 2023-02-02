@@ -3,9 +3,9 @@ import { CatLoaderPageService } from '@catrx/ui/loader-page';
 import { JobService } from './../../../shared/services/job/job.service';
 import { Job, JobStatus } from './../../../shared/services/job/job.interface';
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { ActivatedRoute } from '@angular/router';
-import { delay } from '@koalarx/utils/operators/delay';
+import { klDelay } from '@koalarx/utils/operators/delay';
 
 interface JobStatusButton {
   icon: string
@@ -111,13 +111,15 @@ export class JobComponent implements OnInit {
   }
 
   private simulate() {
-    return new Promise(async resolve => {
-      await delay(2000);
-      await this.updateStatusJob('executingRPA');
-      await delay(2000);
-      await this.updateStatusJob('executingIntegration');
-      await delay(2000);
-      await this.updateStatusJob('done');
+    return new Promise(resolve => {
+      (async () => {
+        await klDelay(2000);
+        await this.updateStatusJob('executingRPA');
+        await klDelay(2000);
+        await this.updateStatusJob('executingIntegration');
+        await klDelay(2000);
+        await this.updateStatusJob('done');
+      })().then(resolve);
     })
   }
 
@@ -142,36 +144,37 @@ export class JobComponent implements OnInit {
   }
 
   private simulateTelemetry(status: JobStatus) {
-    return new Promise(async resolve => {
-      const job = this.job$.getValue();
-      if (job) {
-        if (status === 'executingRPA') {
-          job.telemetryRPA.push({ dateExecuted: new Date(), message: 'Abrindo navegador...' })
-          await delay(1000);
-          job.telemetryRPA.push({ dateExecuted: new Date(), message: 'Navegador aberto.' })
-          await delay(1000);
-          job.telemetryRPA.push({ dateExecuted: new Date(), message: 'Carregando página...' })
-          await delay(1000);
-          job.telemetryRPA.push({ dateExecuted: new Date(), message: 'Página carregada.' })
-          await delay(1000);
-          job.telemetryRPA.push({ dateExecuted: new Date(), message: 'Realizando busca...' })
-          await delay(1000);
-          job.telemetryRPA.push({ dateExecuted: new Date(), message: 'Busca realizada.' })
-          await delay(1000);
-          job.telemetryRPA.push({ dateExecuted: new Date(), message: 'Coletando dados...' })
-          await delay(1000);
-          job.telemetryRPA.push({ dateExecuted: new Date(), message: 'Dados coletados com sucesso!' })
-        } else if (status === 'executingIntegration') {
-          job.telemetryIntegration.push({ dateExecuted: new Date(), message: 'Autenticando a API...' })
-          await delay(1000);
-          job.telemetryIntegration.push({ dateExecuted: new Date(), message: 'API autenticada.' })
-          await delay(1000);
-          job.telemetryIntegration.push({ dateExecuted: new Date(), message: 'Enviando dados...' })
-          await delay(1000);
-          job.telemetryIntegration.push({ dateExecuted: new Date(), message: 'Dados enviados com sucesso!' })
+    return new Promise(resolve => {
+      (async () => {
+        const job = this.job$.getValue();
+        if (job) {
+          if (status === 'executingRPA') {
+            job.telemetryRPA.push({ dateExecuted: new Date(), message: 'Abrindo navegador...' })
+            await klDelay(1000);
+            job.telemetryRPA.push({ dateExecuted: new Date(), message: 'Navegador aberto.' })
+            await klDelay(1000);
+            job.telemetryRPA.push({ dateExecuted: new Date(), message: 'Carregando página...' })
+            await klDelay(1000);
+            job.telemetryRPA.push({ dateExecuted: new Date(), message: 'Página carregada.' })
+            await klDelay(1000);
+            job.telemetryRPA.push({ dateExecuted: new Date(), message: 'Realizando busca...' })
+            await klDelay(1000);
+            job.telemetryRPA.push({ dateExecuted: new Date(), message: 'Busca realizada.' })
+            await klDelay(1000);
+            job.telemetryRPA.push({ dateExecuted: new Date(), message: 'Coletando dados...' })
+            await klDelay(1000);
+            job.telemetryRPA.push({ dateExecuted: new Date(), message: 'Dados coletados com sucesso!' })
+          } else if (status === 'executingIntegration') {
+            job.telemetryIntegration.push({ dateExecuted: new Date(), message: 'Autenticando a API...' })
+            await klDelay(1000);
+            job.telemetryIntegration.push({ dateExecuted: new Date(), message: 'API autenticada.' })
+            await klDelay(1000);
+            job.telemetryIntegration.push({ dateExecuted: new Date(), message: 'Enviando dados...' })
+            await klDelay(1000);
+            job.telemetryIntegration.push({ dateExecuted: new Date(), message: 'Dados enviados com sucesso!' })
+          }
         }
-      }
-      resolve(true);
+      })().then(resolve)
     })
   }
 }

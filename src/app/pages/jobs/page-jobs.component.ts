@@ -8,12 +8,13 @@ import { CatDialogService } from '@catrx/ui/dialog';
 import { CatFormListOptions, CatFormService } from '@catrx/ui/form';
 import { CatLoaderPageService } from '@catrx/ui/loader-page';
 import { CatSnackbarService } from '@catrx/ui/snackbar';
-import { CatXlsxService } from '@catrx/ui/utils';
+import { CatXlsxService } from '@catrx/ui/utils/xlsx';
 import { CatAlertService } from '@catrx/ui/alert';
-import { koala } from '@koalarx/utils';
 import { CatChip } from '@catrx/ui/chip';
 import { Router } from '@angular/router';
-import { first, forkJoin } from 'rxjs';
+import { klArray } from '@koalarx/utils/operators/array';
+import { forkJoin } from 'rxjs/internal/observable/forkJoin';
+import { first } from 'rxjs/internal/operators/first';
 
 @Component({
   template: `
@@ -67,8 +68,7 @@ export class PageJobsComponent extends CatCRUDComponentBase<JobFilter, Job> {
     .select('Status', 'status', (builder) =>
       builder
         .setOptions(
-          koala([{ value: '', name: 'Todos' }])
-            .array<CatFormListOptions>()
+          klArray<CatFormListOptions>([{ value: '', name: 'Todos' }])
             .merge(JobStatusOptions)
             .getValue()
         )

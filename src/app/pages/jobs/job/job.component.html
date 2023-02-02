@@ -9,7 +9,7 @@
 
         <span class="divider"></span>
 
-        <cat-dropdown *ngIf="(currentStatus$ | async) as currentStatus" position="bottom"
+        <cat-dropdown *ngIf="(currentStatus$ | async) as currentStatus" position="bottom left"
           [disabled]="currentStatus.status === 'done'" [insideClick]="false">
 
           <button trigger class="status" [ngClass]="currentStatus.status" [disabled]="currentStatus.status === 'done'">

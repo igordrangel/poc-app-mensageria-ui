@@ -33,15 +33,24 @@
               "./node_modules/@catrx/ui/prebuilt-theme/prebuilt-theme.scss",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "b64-to-blob",
+              "@koalarx/utils/operators/array",
+              "@koalarx/utils/operators/delay",
+              "@koalarx/utils/operators/object",
+              "@koalarx/utils/operators/string",
+              "jwt-encode",
+              "papaparse/papaparse.min.js"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "6mb",
-                  "maximumError": "8mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "4mb"
                 },
                 {
                   "type": "anyComponentStyle",

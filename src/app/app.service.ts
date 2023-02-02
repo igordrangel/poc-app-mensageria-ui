@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { AppConfigMenu, CatAppDecodedToken, CatRoutePolice } from '@catrx/ui/core';
+import { AppConfigMenu, CatAppDecodedToken, CatRoutePolice } from '@catrx/ui';
 
 @Injectable()
 export class AppService {
