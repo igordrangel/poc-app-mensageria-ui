@@ -5,12 +5,14 @@
   width: 100%;
   height: calc(100vh - 145px);
 }
+
 .job-content .job-info-content {
   border-right: 1px solid var(--shadow-color);
   padding: 20px 10px;
   width: 25rem;
   height: 100%;
 }
+
 .job-content .job-info-content .title {
   display: flex;
   justify-content: flex-start;
@@ -18,14 +20,17 @@
   padding: 5px 15px;
   gap: 10px;
 }
+
 .job-content .job-info-content .title i {
   font-size: 1.2rem;
 }
+
 .job-content .job-info-content .title h2 {
   font-size: 1.2rem;
   padding: 0;
   margin: 0;
 }
+
 .job-content .job-info-content button {
   display: flex;
   justify-content: flex-start;
@@ -36,30 +41,38 @@
   padding: 8px 20px;
   width: 100%;
   color: #f1f1f1;
-  background-color: rgba(0,0,0,.2);
+  background-color: rgba(0, 0, 0, .2);
 }
+
 .job-content .job-info-content button:disabled {
   cursor: not-allowed;
 }
+
 .job-content .job-info-content button.status.onQueue i {
   color: var(--chip-bg-warning);
 }
+
 .job-content .job-info-content button.status.onQueue i {
   color: var(--chip-bg-warning);
 }
+
 .job-content .job-info-content button.status.executingRPA i,
 .job-content .job-info-content button.status.executingIntegration i {
   color: var(--chip-bg-primary);
 }
+
 .job-content .job-info-content button.status.error i {
   color: var(--chip-bg-danger);
 }
+
 .job-content .job-info-content button.status.canceled i {
   color: var(--chip-bg-secondary);
 }
+
 .job-content .job-info-content button.status.done i {
   color: var(--chip-bg-success);
 }
+
 .divider {
   display: block;
   width: 100%;
@@ -75,15 +88,19 @@
   width: 100%;
   height: 100%;
   padding: 30px 20px;
-  background-color: rgba(0,0,0,.2);
+  background-color: rgba(0, 0, 0, .2);
 }
+
 .job-telemetry h3 {
   font-size: 1rem;
-  color: rgba(255,255,255,.4);
+  color: rgba(255, 255, 255, .4);
   font-weight: bold;
   margin-bottom: 25px;
 }
-.job-telemetry p {margin: 0;}
+
+.job-telemetry p {
+  margin: 0;
+}
 
 .loader-container {
   display: flex;
@@ -91,4 +108,25 @@
   align-items: center;
   width: 100%;
   height: 100%;
+}
+
+@media (max-width: 980px) {
+  .job-content {
+    flex-direction: column;
+    height: auto;
+    min-height: 150px;
+    justify-content: center;
+  }
+
+  .job-content .job-info-content {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--shadow-color);
+  }
+
+  .job-telemetry {
+    width: 100%;
+    height: auto;
+  }
 }
