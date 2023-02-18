@@ -23,7 +23,7 @@
     "@angular/platform-browser": "^15.0.0",
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
-    "@catrx/ui": "^1.3.2",
+    "@catrx/ui": "^1.3.3",
     "@koalarx/utils": "^2.0.8",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
