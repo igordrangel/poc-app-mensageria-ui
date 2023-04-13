@@ -31,7 +31,7 @@
             ],
             "styles": [
               "./node_modules/@catrx/ui/prebuilt-theme/themes/default-lib-styles.scss",
-              "./node_modules/@catrx/ui/prebuilt-theme/themes/modern/modern-theme.scss",
+              "./node_modules/@catrx/ui/prebuilt-theme/themes/glass/glass-theme.scss",
               "src/styles.scss"
             ],
             "scripts": [],
