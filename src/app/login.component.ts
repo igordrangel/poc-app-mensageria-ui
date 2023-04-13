@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { CatLogotypeApp, CatTokenService } from '@catrx/ui';
 import { CatFormModule, CatFormService } from '@catrx/ui/form';
-import { CatDynamicComponentDataInterface, CatDynamicComponentModule } from '@catrx/ui/dynamic-component';
+import {
+  CatDynamicComponentDataInterface,
+  CatDynamicComponentModule,
+} from '@catrx/ui/dynamic-component';
 import { Observable } from 'rxjs';
 import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
 import { CatFormBase } from '@catrx/ui/common';
@@ -17,7 +20,11 @@ import { CommonModule } from '@angular/common';
 
       <cat-form #form [config]="loginFormConfig"></cat-form>
 
-      <cat-primary-button class="w-100" type="submit" [showLoader]="(submitLoader$ | async) === true">
+      <cat-primary-button
+        class="w-100"
+        type="submit"
+        [showLoader]="(submitLoader$ | async) === true"
+      >
         Entrar
       </cat-primary-button>
     </form>
@@ -34,7 +41,7 @@ import { CommonModule } from '@angular/common';
         margin: 0 auto 20px;
       }
       .logotype img {
-        width: 100px
+        width: 100px;
       }
     `,
   ],
@@ -54,7 +61,9 @@ export class LoginComponent
 
   loginFormConfig = this.formService
     .build()
-    .text('Usuário', 'login', (builder) => builder.focus().setRequired().generate())
+    .text('Usuário', 'login', (builder) =>
+      builder.focus().setRequired().generate()
+    )
     .password('Senha', 'password', (builder) =>
       builder.setRequired().generate()
     )
